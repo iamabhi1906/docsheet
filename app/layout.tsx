@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+// import "quill/dist/quill.snow.css";
 import { manrope } from "./ui/font";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "Docsheet | Write together, clearly",
-  description: "A calm, collaborative home for ideas in motion.",
+  title: "Docsheet",
 };
 
 export default function RootLayout({

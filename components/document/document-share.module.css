@@ -1,0 +1,35 @@
+.title {
+  text-align: center;
+  font-weight: 700 !important;
+  padding-top: 24px !important;
+}
+
+.content {
+  padding-top: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.qrWrapper {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.actions {
+  padding: 20px 24px !important;
+  justify-content: space-between !important;
+}

@@ -1,0 +1,11 @@
+.page {
+  padding: 20px 100px;
+}
+
+.justifyBetween {
+  justify-content: space-between;
+}
+
+.navbar {
+  margin-bottom: 15px;
+}

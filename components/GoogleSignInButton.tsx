@@ -5,6 +5,8 @@ import { useState } from "react";
 import GoogleIcon from "@mui/icons-material/Google";
 import styles from "./GoogleSignInButton.module.css";
 import { AuthService } from "@/services/auth";
+import { createSession } from "@/lib/session-client";
+import { useRouter } from "next/navigation";
 
 interface GoogleSignInButtonProps {
   fullWidth?: boolean;
@@ -15,12 +17,16 @@ export function GoogleSignInButton({
 }: GoogleSignInButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   async function handleSignIn() {
     setError(null);
     setIsLoading(true);
     try {
-      await AuthService.signInWithGoogle();
+      const response = await AuthService.signInWithGoogle();
+      const idToken = await response.getIdToken();
+      await createSession(idToken);
+      router.refresh();
     } catch {
       setError("Google sign-in could not be completed. Please try again.");
     } finally {

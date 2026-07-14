@@ -1,0 +1,15 @@
+.container {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.button {
+  min-height: 48px;
+  padding-inline: 22px;
+}
+
+.error {
+  margin-top: 8px;
+  max-width: 340px;
+  font-size: 0.75rem;
+}

@@ -1,66 +1,36 @@
-import Image from "next/image";
+import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 import styles from "./page.module.css";
+import { Box, Stack, Typography } from "@mui/material";
+import Link from "next/link";
 
-export default function Home() {
+export default async function Landing() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <Box className={styles.page}>
+      <Box className={styles.nav} aria-label="Primary navigation">
+        <Link className={styles.brand} href="/">
+          Docsheet
+        </Link>
+        <GoogleSignInButton />
+      </Box>
+      <Box className={styles.hero} id="top">
+        <Stack className={styles.heroCopy} spacing={4}>
+          <Typography variant="h1">
+            Make room for your best thinking.
+          </Typography>
+          <Typography variant="body1">
+            Docsheet is a calm, collaborative home for ideas in motion—from the
+            first spark to the final share.
+          </Typography>
+          <div className={styles.heroActions}>
+            <GoogleSignInButton />
+          </div>
+        </Stack>
+        {/* <EditorPreview /> */}
+      </Box>
+      <footer className={styles.footer}>
+        <span>© 2026 Docsheet</span>
+        <span>Write together, clearly.</span>
+      </footer>
+    </Box>
   );
 }

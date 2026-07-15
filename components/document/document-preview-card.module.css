@@ -3,14 +3,30 @@
   width: 100%;
   gap: 20px;
   flex-wrap: wrap;
+  margin-bottom: 5px;
 }
 
 .card {
-  width: 400px;
+  width: 500px;
+  gap: 10px !important;
+}
+
+.actions {
+  display: flex !important;
+  justify-content: space-between !important;
+  background-color: var(--mui-palette-divider);
+}
+
+.contentBox {
+  padding: 10px 15px !important;
+}
+
+.documentTitle {
+  font-weight: 700 !important;
 }
 
 .content {
-  min-height: 60;
+  height: 60;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   line-clamp: 3;

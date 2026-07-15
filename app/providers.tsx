@@ -4,7 +4,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import type { ReactNode } from "react";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { appTheme } from "./ui/theme";
-import { AuthProvider } from "@/components/AuthProvider";
+import { AuthProvider } from "@/components/auth-provider";
 import { Provider } from "react-redux";
 import { store } from "@/app/store";
 

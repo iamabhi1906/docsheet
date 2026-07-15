@@ -1,6 +1,7 @@
 import DocumentEditPage from "@/components/document-page/document-edit-page";
 import DocumentViewOnly from "@/components/document-page/document-view-only-page";
 import { getSession } from "@/lib/auth";
+import { CollaborationService } from "@/services/collaboration";
 import { DocumentService } from "@/services/document";
 import { notFound } from "next/navigation";
 
@@ -11,6 +12,7 @@ interface DocumentPageProps {
 export default async function DocumentPage({ params }: DocumentPageProps) {
   const { documentId } = await params;
   const document = await DocumentService.get(documentId);
+  // const collaboratior = await CollaborationService.
 
   if (!document) notFound();
   const session = await getSession();

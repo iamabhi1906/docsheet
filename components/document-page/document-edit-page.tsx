@@ -7,6 +7,7 @@ import {
   Avatar,
   AvatarGroup,
   Box,
+  Button,
   Chip,
   Stack,
   TextField,
@@ -18,6 +19,8 @@ import moment from "moment";
 import styles from "./document-edit-page.module.css";
 import Editor from "../editor";
 import { DocumentService } from "@/services/document";
+import HomeIcon from "@mui/icons-material/Home";
+import Link from "next/link";
 
 interface DocumentEditProps {
   document: DocumentRecord;
@@ -106,34 +109,42 @@ export default function Page({ document, user }: DocumentEditProps) {
   return (
     <Box className={styles.page}>
       <Stack
-        direction={{ xs: "column", sm: "row" }}
+        // direction={{ xs: "column", sm: "row" }}
         spacing={2}
+        direction={"row"}
         className={`${styles.justifyBetween} ${styles.navbar}`}
       >
-        <Box>
-          <TextField
-            variant="standard"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            onBlur={() => void onTitleUpdate(title)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                (e.target as HTMLInputElement).blur();
-              }
-            }}
-            sx={{
-              "& .MuiInputBase-input": {
-                fontSize: "1.40rem",
-                fontWeight: "bold",
-              },
-            }}
-          />
-          <Typography variant="body2" color="text.secondary">
-            Last updated{" "}
-            {doc.updatedAt ? moment(doc.updatedAt).utc().fromNow() : "just now"}
-          </Typography>
-        </Box>
+        <Stack direction={"row"} spacing={{ sm: 0 }}>
+          <Button href="/" LinkComponent={Link} size="large">
+            <HomeIcon fontSize="large" />
+          </Button>
+          <Box>
+            <TextField
+              variant="standard"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              onBlur={() => void onTitleUpdate(title)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  (e.target as HTMLInputElement).blur();
+                }
+              }}
+              sx={{
+                "& .MuiInputBase-input": {
+                  fontSize: "1.40rem",
+                  fontWeight: "bold",
+                },
+              }}
+            />
+            <Typography variant="body2" color="text.secondary">
+              Last updated{" "}
+              {doc.updatedAt
+                ? moment(doc.updatedAt).utc().fromNow()
+                : "just now"}
+            </Typography>
+          </Box>
+        </Stack>
         <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
           <Chip
             label={connected ? "Live" : "Reconnecting…"}

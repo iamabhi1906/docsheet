@@ -3,13 +3,13 @@
 import { CollaborationService } from "@/services/collaboration";
 import { DocumentRecord } from "@/types/document";
 import { useEffect, useState } from "react";
-import { Box, Chip, Stack, Typography } from "@mui/material";
+import { Box, Chip, Divider, Stack, Typography } from "@mui/material";
 import moment from "moment";
 
 import styles from "./document-view-only-page.module.css";
 import { RichTextReadOnly } from "mui-tiptap";
-import useExtensions from "../useExtensions";
-import { GoogleSignInButton } from "../GoogleSignInButton";
+import useExtensions from "../use-extensions";
+import { GoogleSignInButton } from "../google-signin-button";
 
 export default function DocumentViewOnly({
   document,
@@ -41,8 +41,11 @@ export default function DocumentViewOnly({
   }, [document.id]);
 
   return (
-    <Box className={styles.container}>
-      <Stack className={styles.titleWrapper} direction={"row"}>
+    <Box className={styles.page}>
+      <Stack
+        className={styles.titleWrapper}
+        direction={{ sm: "column", md: "row" }}
+      >
         <Typography variant="h4" component="h1" gutterBottom>
           {document.title}
         </Typography>
@@ -52,13 +55,17 @@ export default function DocumentViewOnly({
         </Stack>
       </Stack>
 
-      <Box>
-        <RichTextReadOnly content={content} extensions={extensions} />
-      </Box>
-
-      <Typography>
-        Last updated on:- {moment(doc.updatedAt).utc().fromNow()}
+      <Typography variant="caption">
+        Last updated on:- {moment(doc.updatedAt).utc().local().fromNow()}
       </Typography>
+      <Divider />
+      <Box>
+        <RichTextReadOnly
+          content={content}
+          extensions={extensions}
+          immediatelyRender
+        />
+      </Box>
 
       <Typography variant="h6" component="h2" gutterBottom>
         Collaboration

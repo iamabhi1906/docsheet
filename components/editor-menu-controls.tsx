@@ -1,3 +1,4 @@
+"use client";
 import { useTheme } from "@mui/material";
 import {
   MenuButtonAddTable,
@@ -47,9 +48,9 @@ export default function EditorMenuControls() {
 
       <MenuDivider />
 
-      <MenuSelectFontSize />
+      {/* <MenuSelectFontSize /> */}
 
-      <MenuDivider />
+      {/* <MenuDivider /> */}
 
       <MenuButtonBold />
 
@@ -125,7 +126,7 @@ export default function EditorMenuControls() {
 
       <MenuButtonHorizontalRule />
 
-      <MenuButtonAddTable />
+      {/* <MenuButtonAddTable /> */}
 
       <MenuDivider />
 

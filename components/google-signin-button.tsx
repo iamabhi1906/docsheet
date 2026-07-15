@@ -3,7 +3,7 @@
 import { Alert, Box, Button, CircularProgress } from "@mui/material";
 import { useState } from "react";
 import GoogleIcon from "@mui/icons-material/Google";
-import styles from "./GoogleSignInButton.module.css";
+import styles from "./google-signin-button.module.css";
 import { AuthService } from "@/services/auth";
 import { createSession } from "@/lib/session-client";
 import { useRouter } from "next/navigation";

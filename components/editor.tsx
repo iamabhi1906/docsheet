@@ -1,12 +1,8 @@
 import { useEffect, useRef } from "react";
-import {
-  LinkBubbleMenu,
-  RichTextEditor,
-  TableBubbleMenu,
-  type RichTextEditorRef,
-} from "mui-tiptap";
-import useExtensions from "./useExtensions";
-import EditorMenuControls from "./EditorMenuControls";
+import { RichTextEditor, type RichTextEditorRef } from "mui-tiptap";
+import useExtensions from "./use-extensions";
+import EditorMenuControls from "./editor-menu-controls";
+import styles from "./editor.module.css";
 
 interface EditorProps {
   content: string;
@@ -30,23 +26,49 @@ export default function Editor({ content, onChange }: EditorProps) {
       <RichTextEditor
         ref={rteRef}
         extensions={extensions}
-        content={content} // Initial content
+        content={content}
+        immediatelyRender
+        editorProps={{
+          handlePaste(view, event) {
+            const items = event.clipboardData?.items;
+            if (!items) return false;
+
+            for (const item of items) {
+              if (item.type.startsWith("image/")) {
+                const file = item.getAsFile();
+                if (!file) continue;
+
+                const reader = new FileReader();
+
+                reader.onload = () => {
+                  const src = reader.result as string;
+
+                  const node = view.state.schema.nodes.image.create({
+                    src,
+                  });
+
+                  const tr = view.state.tr.replaceSelectionWith(node);
+                  view.dispatch(tr);
+                };
+
+                reader.readAsDataURL(file);
+
+                return true;
+              }
+            }
+
+            return false;
+          },
+        }}
         onUpdate={({ editor }) => {
-          const html = editor.getHTML();
-          onChange(html);
+          onChange(editor.getHTML());
         }}
         renderControls={() => <EditorMenuControls />}
         RichTextFieldProps={{
           variant: "standard",
         }}
-      >
-        {() => (
-          <>
-            <LinkBubbleMenu />
-            <TableBubbleMenu />
-          </>
-        )}
-      </RichTextEditor>
+        className={styles.textArea}
+      />
     </>
   );
 }

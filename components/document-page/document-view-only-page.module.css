@@ -1,9 +1,23 @@
-.container {
-  padding: 10px 100px;
+.page {
+  height: 100dvh;
+  overflow: hidden;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .titleWrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding: 20px 100px;
+  }
+  .hero {
+    max-width: 600px;
+  }
 }

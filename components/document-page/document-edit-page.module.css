@@ -1,5 +1,10 @@
 .page {
-  padding: 20px 100px;
+  height: 100dvh;
+  overflow: hidden;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .justifyBetween {
@@ -8,4 +13,16 @@
 
 .navbar {
   margin-bottom: 15px;
+  display: flex;
+  align-items: end;
+}
+
+
+@media (min-width: 768px) {
+  .page {
+    padding: 20px 100px;
+  }
+  .hero {
+    max-width: 600px;
+  }
 }

@@ -93,9 +93,9 @@ export const DocumentService = {
       return [];
     }
     const documents = snapshot.val() as Record<string, Record<string, unknown>>;
-    return Object.entries(documents).map(([documentId, value]) =>
-      toDocumentRecord(documentId, value),
-    );
+    return Object.entries(documents)
+      .map(([documentId, value]) => toDocumentRecord(documentId, value))
+      .reverse();
   },
 
   async updateTitle(documentId: string, title: string): Promise<void> {

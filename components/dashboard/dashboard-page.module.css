@@ -1,0 +1,45 @@
+.page {
+  height: 100dvh;
+  overflow: hidden;
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.brand {
+  font-size: 2rem;
+  font-weight: 800 !important;
+  letter-spacing: -0.06em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.welcomeMessage {
+  font-size: 40px !important;
+}
+.welcomeMessage span {
+  font-weight: 700;
+}
+
+.dashboardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding: 20px 100px;
+  }
+  .hero {
+    max-width: 600px;
+  }
+}

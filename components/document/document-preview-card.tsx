@@ -4,7 +4,6 @@ import {
   CardContent,
   Typography,
   Box,
-  Stack,
   Button,
   CardActions,
 } from "@mui/material";
@@ -13,6 +12,9 @@ import Link from "next/link";
 import ShareDocumentDialog from "./document-share";
 import { useState } from "react";
 import ShareIcon from "@mui/icons-material/Share";
+import { RichTextReadOnly } from "mui-tiptap";
+import useExtensions from "../use-extensions";
+import moment from "moment";
 
 export default function DocumentCards({
   documents,
@@ -29,36 +31,37 @@ export default function DocumentCards({
 }
 
 function DocumentCard({ document }: { document: DocumentRecord }) {
+  const extensions = useExtensions({
+    placeholder: "Add your own content here...",
+  });
   const [open, setOpen] = useState(false);
 
   return (
     <>
       <Card className={styles.card} key={document.id}>
-        <Link href={`/documents/${document.id}`} className={styles.link}>
-          <CardContent>
-            <Typography variant="h6" noWrap>
+        <Link href={`/documents/${document.id}`}>
+          <CardContent className={styles.contentBox}>
+            <Typography variant="h6" noWrap className={styles.documentTitle}>
               {document.title}
             </Typography>
 
+            <Box className={styles.content}>
+              <RichTextReadOnly
+                content={document.content}
+                extensions={extensions}
+                immediatelyRender
+              />
+            </Box>
+
             <Typography
-              variant="body2"
+              variant="caption"
               color="text.secondary"
-              className={styles.content}
+              gutterBottom
+              className={styles.createdAt}
             >
-              {document.content || "No content"}
+              {document.createdAt &&
+                `Created: ${moment(document.createdAt).utc().local().calendar()}`}
             </Typography>
-
-            <Stack spacing={0}>
-              <Typography variant="caption" color="text.secondary">
-                {document.createdAt &&
-                  `Created: ${new Date(document.createdAt).toLocaleString()}`}
-              </Typography>
-
-              <Typography variant="caption" color="text.secondary">
-                {document.updatedAt &&
-                  `Updated: ${new Date(document.updatedAt).toLocaleString()}`}
-              </Typography>
-            </Stack>
           </CardContent>
         </Link>
 
@@ -70,6 +73,11 @@ function DocumentCard({ document }: { document: DocumentRecord }) {
           >
             Share
           </Button>
+
+          <Typography variant="caption" color="text.secondary">
+            {document.updatedAt &&
+              `Updated: ${moment(document.updatedAt).utc().fromNow()}`}
+          </Typography>
         </CardActions>
       </Card>
 

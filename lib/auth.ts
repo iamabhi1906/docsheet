@@ -1,3 +1,4 @@
+"use server";
 import type { DecodedIdToken } from "firebase-admin/auth";
 import { cookies } from "next/headers";
 import { adminAuth } from "./firebase-admin";

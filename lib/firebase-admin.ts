@@ -1,4 +1,3 @@
-"use server";
 import { cert, getApps, initializeApp } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 import z from "zod";

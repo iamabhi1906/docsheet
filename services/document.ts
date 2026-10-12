@@ -27,6 +27,7 @@ function toDocumentRecord(
     id,
     ownerId: typeof data.ownerId === "string" ? data.ownerId : "",
     title: typeof data.title === "string" ? data.title : "",
+    isPrivate: typeof data.isPrivate === "boolean" ? data.isPrivate : null,
     createdAt: typeof createdAtValue === "number" ? createdAtValue : null,
     updatedAt: typeof updatedAtValue === "number" ? updatedAtValue : null,
   };
@@ -48,6 +49,7 @@ export const DocumentService = {
   async create({
     ownerId,
     title,
+    isPrivate,
   }: CreateDocumentInput): Promise<DocumentRecord> {
     const database = getClientDatabase();
     const documentRef = push(ref(database, documentsRoot));
@@ -58,6 +60,7 @@ export const DocumentService = {
       createdAt: serverTimestamp(),
       ownerId,
       title,
+      isPrivate,
       updatedAt: serverTimestamp(),
     });
 

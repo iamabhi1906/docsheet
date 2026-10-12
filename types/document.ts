@@ -3,6 +3,7 @@ export interface DocumentRecord {
   ownerId: string;
   title: string;
   content: string;
+  isPrivate: boolean | null;
   createdAt: number | null;
   updatedAt: number | null;
 }
@@ -10,4 +11,5 @@ export interface DocumentRecord {
 export interface CreateDocumentInput {
   ownerId: string;
   title: string;
+  isPrivate: boolean;
 }
